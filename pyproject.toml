@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "kubesphere-ks-installer"
+version = "0.1.0"
+description = ""
+authors = ["liuyuancheng <tenstone@foxmail.com>"]
+readme = "README.md"
+packages = [{include = "kubesphere_ks_installer"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+kubernetes = "^26.1.0"
+ansible-runner = "^2.3.2"
+
+
+[[tool.poetry.source]]
+name = "mirrors"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+default = true
+secondary = false
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

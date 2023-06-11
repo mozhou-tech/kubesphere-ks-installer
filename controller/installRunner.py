@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 import os
+import re
 import sys
 import shutil
 import json
@@ -419,7 +420,12 @@ def generateConfig(api):
 
     cluster_config['nodeNum'] = len(nodesObj["items"])
     cluster_config['kubernetes_version'] = client.VersionApi().get_code().git_version
-
+    version_pattern = re.compile(r"^v(\d+\.\d+\.\d+).*")
+    match = version_pattern.match(cluster_config['kubernetes_version'])
+    version_number = 0
+    if match:
+        version_number = match.group(1)
+    cluster_config['kubernetes_version'] = "v{}".format(version_number)
     try:
         with open(configFile, 'w', encoding='utf-8') as f:
             json.dump(cluster_config, f, ensure_ascii=False, indent=4)

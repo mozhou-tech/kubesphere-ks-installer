@@ -1,3 +1,4 @@
+---
 - name: KubeSphere | Getting openldap installation files
   copy:
     src: "{{ item }}"
